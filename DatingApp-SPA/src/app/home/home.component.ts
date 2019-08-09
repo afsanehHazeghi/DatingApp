@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { AuthService } from '../_services/auth.service';
+
 
 @Component({
   selector: 'app-home',
@@ -9,24 +9,18 @@ import { AuthService } from '../_services/auth.service';
 })
 export class HomeComponent implements OnInit {
   registerMode = false;
-  values: any;
-  constructor(private http: HttpClient , private auth: AuthService) { }
+
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.getValues();
   }
 
-  getValues() {
-    this.http.get(this.auth.baseUrl + 'Values').subscribe((response: any) => {
-      this.values = response;
-    }, error => console.log(error));
-  }
-  registerToggle () {
+  registerToggle() {
     this.registerMode = true;
   }
 
-  cancelRegister(registerMode: boolean) {
-    console.log(registerMode);
+  cancelRegisterMode(registerMode: boolean) {
     this.registerMode = registerMode;
   }
+
 }
